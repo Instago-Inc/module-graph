@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>graph Documentation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 48px 24px;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+      }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 28px;
+      }
+      .intro {
+        font-size: 16px;
+        color: #e2e8f0;
+      }
+      p {
+        margin: 0 0 16px;
+        color: #cbd5f5;
+      }
+      ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+      a {
+        color: #93c5fd;
+      }
+      .section {
+        margin-top: 28px;
+      }
+      .muted {
+        color: #94a3b8;
+        font-size: 14px;
+        margin: 6px 0 0;
+      }
+      .code {
+        background: #0b1220;
+        border: 1px solid #1e293b;
+        border-radius: 10px;
+        padding: 16px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #e2e8f0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>module/graph - V8 module</h1>
+      <p class="intro">This module is a compact helper for calling Microsoft Graph in Instago workflows. It keeps token handling and request setup in one place so flows can stay small and focused.</p>
+      <p class="muted">Learn more at <a href="https://instago.ai" target="_blank" rel="noopener">https://instago.ai</a>.</p>
+      <div class="section">
+        <h2>Technical reference</h2>
+        <h1>module/graph - V8 module</h1>
+<p>This module is a compact helper for calling Microsoft Graph in Instago workflows. It keeps token handling and request setup in one place so flows can stay small and focused.</p>
+<p>Learn more about the platform at https://instago.ai.</p>
+<h2>Technical reference</h2>
+<p>Exports:</p>
+<ul>
+<li><code>configure({ tenant?, clientId?, clientSecret?, refreshToken?, scope?, baseUrl? })</code></li>
+<li><code>ensureAccessToken(overrides?)</code></li>
+<li><code>json({ path, method=&#x27;GET&#x27;, headers?, bodyObj?, debug?, auth? })</code></li>
+</ul>
+<p>Usage:</p>
+<ul>
+<li><code>configure(...)</code> stores defaults for auth and <code>baseUrl</code> (<code>https://graph.microsoft.com/v1.0</code> by default).</li>
+<li><code>ensureAccessToken(overrides?)</code> returns a token from <code>overrides</code>, configured values, or env keys.</li>
+<li><code>json(...)</code> performs a Graph request, adds <code>Authorization</code> when missing, and returns <code>{ ok, data, status, raw, error }</code>.</li>
+</ul>
+<p>Configuration:</p>
+<ul>
+<li>Optional env keys:</li>
+<li><code>graph.accessToken</code></li>
+<li><code>graph.clientId</code></li>
+<li><code>graph.clientSecret</code></li>
+<li><code>graph.refreshToken</code></li>
+<li><code>graph.scope</code></li>
+<li><code>graph.tenant</code></li>
+<li><code>ms.accessToken</code></li>
+<li><code>ms.clientId</code></li>
+<li><code>ms.clientSecret</code></li>
+<li><code>ms.refreshToken</code></li>
+<li><code>ms.scope</code></li>
+<li><code>ms.tenant</code></li>
+<li><code>msAccessToken</code></li>
+<li><code>msClientId</code></li>
+<li><code>msClientSecret</code></li>
+<li><code>msRefreshToken</code></li>
+<li><code>msScope</code></li>
+<li><code>msTenant</code></li>
+</ul>
+<p>Examples:</p>
+<pre class="code"><code>
+const graph = require(&#x27;graph@latest&#x27;);
+
+graph.configure({
+  tenant: env.graph.tenant,
+  clientId: env.graph.clientId,
+  clientSecret: env.graph.clientSecret,
+  refreshToken: env.graph.refreshToken
+});
+
+const res = await graph.json({ path: &#x27;/me&#x27;, method: &#x27;GET&#x27; });
+</code></pre>
+<pre class="code"><code>
+const graph = require(&#x27;graph@latest&#x27;);
+
+const res = await graph.json({
+  path: &#x27;/me/drive/root&#x27;,
+  auth: { accessToken: env.graph.accessToken }
+});
+</code></pre>
+      </div>
+      
+    </main>
+  </body>
+</html>

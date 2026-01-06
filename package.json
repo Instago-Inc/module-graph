@@ -1,0 +1,17 @@
+{
+  "name": "@instago/graph",
+  "version": "1.0.1",
+  "description": "Module graph",
+  "main": "index.js",
+  "type": "commonjs",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "instago",
+    "graph"
+  ],
+  "files": [
+    "index.js",
+    "ReadMe.MD",
+    "LICENSE"
+  ]
+}
