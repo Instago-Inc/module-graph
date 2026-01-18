@@ -1,5 +1,5 @@
-const t = require('utest@1.0.0');
-const graph = require('graph@1.0.0');
+const t = require('utest@latest');
+const graph = require('graph@latest');
 
 t.test('ensureAccessToken returns empty when unconfigured', async () => {
   const tok = await graph.ensureAccessToken({});

@@ -4,9 +4,9 @@
 // - json({ path, method='GET', headers, bodyObj, debug }) -> { ok, data, status, error? }
 
 (function(){
-  const httpx = require('http@1.0.0');
-  const log = require('log@1.0.0').create('graph');
-  let oauth; try { oauth = require('msauth@1.0.0'); } catch {}
+  const httpx = require('http@latest');
+  const log = require('log@latest').create('graph');
+  let oauth; try { oauth = require('msauth@latest'); } catch {}
 
   const cfg = {
     tenant: null,

@@ -1,8 +1,8 @@
 # module/graph - V8 module
 
-This module is a compact helper for calling Microsoft Graph in Instago workflows. It keeps token handling and request setup in one place so flows can stay small and focused.
+This module keeps Microsoft Graph calls simple inside Instago workflows. It bundles auth lookup and request helpers so step code stays small and readable.
 
-Learn more about the platform at https://instago.ai.
+If you are new to the platform, start at https://instago.ai.
 
 ## Technical reference
 
@@ -12,9 +12,9 @@ Exports:
 - `json({ path, method='GET', headers?, bodyObj?, debug?, auth? })`
 
 Usage:
-- `configure(...)` stores defaults for auth and `baseUrl` (`https://graph.microsoft.com/v1.0` by default).
-- `ensureAccessToken(overrides?)` returns a token from `overrides`, configured values, or env keys.
-- `json(...)` performs a Graph request, adds `Authorization` when missing, and returns `{ ok, data, status, raw, error }`.
+- `configure(...)` stores default auth fields and `baseUrl` (defaults to `https://graph.microsoft.com/v1.0`).
+- `ensureAccessToken(overrides?)` checks `overrides`, configured values, then env keys to return an access token string (or an empty string).
+- `json(...)` joins `baseUrl` + `path`, adds `Authorization` if missing, and returns `{ ok, data, status, raw, error }`.
 
 Configuration:
 - Optional env keys:
@@ -45,7 +45,8 @@ graph.configure({
   tenant: env.graph.tenant,
   clientId: env.graph.clientId,
   clientSecret: env.graph.clientSecret,
-  refreshToken: env.graph.refreshToken
+  refreshToken: env.graph.refreshToken,
+  scope: env.graph.scope
 });
 
 const res = await graph.json({ path: '/me', method: 'GET' });

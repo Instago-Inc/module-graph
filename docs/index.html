@@ -59,13 +59,13 @@
   <body>
     <main>
       <h1>module/graph - V8 module</h1>
-      <p class="intro">This module is a compact helper for calling Microsoft Graph in Instago workflows. It keeps token handling and request setup in one place so flows can stay small and focused.</p>
+      <p class="intro">This module keeps Microsoft Graph calls simple inside Instago workflows. It bundles auth lookup and request helpers so step code stays small and readable.</p>
       <p class="muted">Learn more at <a href="https://instago.ai" target="_blank" rel="noopener">https://instago.ai</a>.</p>
       <div class="section">
         <h2>Technical reference</h2>
         <h1>module/graph - V8 module</h1>
-<p>This module is a compact helper for calling Microsoft Graph in Instago workflows. It keeps token handling and request setup in one place so flows can stay small and focused.</p>
-<p>Learn more about the platform at https://instago.ai.</p>
+<p>This module keeps Microsoft Graph calls simple inside Instago workflows. It bundles auth lookup and request helpers so step code stays small and readable.</p>
+<p>If you are new to the platform, start at https://instago.ai.</p>
 <h2>Technical reference</h2>
 <p>Exports:</p>
 <ul>
@@ -75,9 +75,9 @@
 </ul>
 <p>Usage:</p>
 <ul>
-<li><code>configure(...)</code> stores defaults for auth and <code>baseUrl</code> (<code>https://graph.microsoft.com/v1.0</code> by default).</li>
-<li><code>ensureAccessToken(overrides?)</code> returns a token from <code>overrides</code>, configured values, or env keys.</li>
-<li><code>json(...)</code> performs a Graph request, adds <code>Authorization</code> when missing, and returns <code>{ ok, data, status, raw, error }</code>.</li>
+<li><code>configure(...)</code> stores default auth fields and <code>baseUrl</code> (defaults to <code>https://graph.microsoft.com/v1.0</code>).</li>
+<li><code>ensureAccessToken(overrides?)</code> checks <code>overrides</code>, configured values, then env keys to return an access token string (or an empty string).</li>
+<li><code>json(...)</code> joins <code>baseUrl</code> + <code>path</code>, adds <code>Authorization</code> if missing, and returns <code>{ ok, data, status, raw, error }</code>.</li>
 </ul>
 <p>Configuration:</p>
 <ul>
@@ -109,7 +109,8 @@ graph.configure({
   tenant: env.graph.tenant,
   clientId: env.graph.clientId,
   clientSecret: env.graph.clientSecret,
-  refreshToken: env.graph.refreshToken
+  refreshToken: env.graph.refreshToken,
+  scope: env.graph.scope
 });
 
 const res = await graph.json({ path: &#x27;/me&#x27;, method: &#x27;GET&#x27; });
@@ -123,7 +124,19 @@ const res = await graph.json({
 });
 </code></pre>
       </div>
-      
+      <div class="section">
+  <h2>Changelog</h2>
+  <h2>v1.0.1 - Graph Module Release Prep</h2>
+<p>Captured the graph module release context with clear packaging cues so future searches find the updated version and documentation. Keywords: graph module, release preparations, package version.</p>
+<h3>Added</h3>
+<ul>
+<li>Documented the package state and release intent to surface the graph module’s latest versioning and tooling notes.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Bumped the package manifest to version 1.0.1 in preparation for publishing.</li>
+</ul>
+</div>
     </main>
   </body>
 </html>

@@ -1,6 +1,6 @@
 {
   "name": "@instago/graph",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Module graph",
   "main": "index.js",
   "type": "commonjs",
